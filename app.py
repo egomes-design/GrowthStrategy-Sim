@@ -9,18 +9,46 @@ if 'started' not in st.session_state:
     st.session_state.started = False
 
 if not st.session_state.started:
-    st.title('Growth Strategy Simulation')
-    st.subheader('Ansoff-based team strategy game')
-    st.write(
-        'Allocate investment points each quarter across four moves and see how your '
-        'strategy performs under uncertainty.'
+    # Background image (free Unsplash photo, executives/team setting)
+    bg_img_url = "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2400&q=80"
+
+    st.markdown(
+        """
+        <style>
+        .welcome-hero {
+            width: 100%;
+            border-radius: 16px;
+            padding: 64px 48px;
+            margin: 8px 0 24px 0;
+
+            background-image:
+                linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.58)),
+                url(""" + bg_img_url + """);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            color: white;
+        }
+        .welcome-hero h1, .welcome-hero p { color: white !important; }
+        </style>
+
+        <div class="welcome-hero">
+            <h1>Growth Strategy Simulation</h1>
+            <p style="font-size: 1.1rem; max-width: 900px; line-height: 1.6;">
+                An Ansoff-based strategy game. Allocate points each quarter across four moves
+                and see how your choices perform under uncertainty.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
-    st.markdown('#### How it works')
-    st.write('You will make one allocation per quarter across A/B/C/D.')
-    st.write('After submitting, advance the quarter to apply results and any external events.')
+    st.markdown("#### How it works")
+    st.write("Each quarter you allocate a fixed budget of points across A/B/C/D.")
+    st.write("Then you review outcomes, respond to shocks, and iterate.")
 
-    if st.button('Start simulation', type='primary'):
+    if st.button("Start simulation", type="primary"):
         st.session_state.started = True
         st.rerun()
 

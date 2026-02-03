@@ -6,70 +6,20 @@ import streamlit as st
 st.set_page_config(page_title='Growth Strategy Simulation (Ansoff-based)', layout='wide')
 
 
-# --- BEAUTIFUL WELCOME PAGE WITH BACKGROUND --- #
-import streamlit as st
-
-# Background image (replace this link with your own if you want)
-PAGE_BG = """
-<style>
-[data-testid="stAppViewContainer"] {
-    background-image: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-[data-testid="stHeader"] {
-    background: rgba(0,0,0,0);
-}
-</style>
-"""
-st.markdown(PAGE_BG, unsafe_allow_html=True)
-
-# Show welcome page once per session
+# --- Welcome Page ---
 if "show_welcome" not in st.session_state:
     st.session_state.show_welcome = True
 
 if st.session_state.show_welcome:
-    st.markdown(
-        """
-        <div style='padding: 60px; 
-                    background: rgba(255, 255, 255, 0.85); 
-                    border-radius: 12px;
-                    max-width: 800px;
-                    margin: auto;
-                    text-align: center;'>
+    st.title("Welcome to the Growth Strategy Simulation")
+    st.write("""
+    This interactive simulation challenges you to make strategic choices
+    across multiple quarters, balancing growth, execution, risk, and optionality.
 
-        <h1 style='font-size: 48px; margin-bottom: 10px;'>
-        Growth Strategy Simulation
-        </h1>
+    Click **Start Simulation** to begin.
+    """)
 
-        <h3 style='color: #444; margin-top: 0;'>
-        A Strategic Decision-Making Experience
-        </h3>
-
-        <p style='font-size: 20px; line-height: 1.6; color: #333;'>
-        Welcome to the <strong>Growth Strategy Simulation</strong>, an interactive experience 
-        designed to mirror the real-world challenges faced by leadership teams.
-        </p>
-
-        <p style='font-size: 20px; line-height: 1.6; color: #333;'>
-        Over multiple quarters, you will allocate resources, respond to shocks,
-        and balance growth, execution, innovation, and risk — all while aiming to achieve 
-        the strongest <strong>Balanced Score</strong>.
-        </p>
-
-        <h4 style='color: #222; margin-top: 30px;'>
-        When you're ready, begin the journey.
-        </h4>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown("<br><br>", unsafe_allow_html=True)
-
-    if st.button("🚀 Start Simulation", use_container_width=True):
+    if st.button("Start Simulation"):
         st.session_state.show_welcome = False
         st.rerun()
 

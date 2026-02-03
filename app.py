@@ -5,26 +5,26 @@ import streamlit as st
 
 st.set_page_config(page_title='Growth Strategy Simulation (Ansoff-based)', layout='wide')
 
+if 'started' not in st.session_state:
+    st.session_state.started = False
 
-# --- Welcome Page ---
-if "show_welcome" not in st.session_state:
-    st.session_state.show_welcome = True
+if not st.session_state.started:
+    st.title('Growth Strategy Simulation')
+    st.subheader('Ansoff-based team strategy game')
+    st.write(
+        'Allocate investment points each quarter across four moves and see how your '
+        'strategy performs under uncertainty.'
+    )
 
-if st.session_state.show_welcome:
-    st.title("Welcome to the Growth Strategy Simulation")
-    st.write("""
-    This interactive simulation challenges you to make strategic choices
-    across multiple quarters, balancing growth, execution, risk, and optionality.
+    st.markdown('#### How it works')
+    st.write('You will make one allocation per quarter across A/B/C/D.')
+    st.write('After submitting, advance the quarter to apply results and any external events.')
 
-    Click **Start Simulation** to begin.
-    """)
-
-    if st.button("Start Simulation"):
-        st.session_state.show_welcome = False
+    if st.button('Start simulation', type='primary'):
+        st.session_state.started = True
         st.rerun()
 
     st.stop()
-
 
 # ----------------------------
 # Game content (MBA-friendly)
